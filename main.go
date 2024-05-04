@@ -52,5 +52,6 @@ func (s *StringSaver) ServeHTTP(writer http.ResponseWriter, request *http.Reques
 }
 
 func main() {
-	_ = http.ListenAndServe("0.0.0.0:8888", &StringSaver{})
+	http.DefaultServeMux.Handle("/clash", &StringSaver{})
+	_ = http.ListenAndServe("0.0.0.0:8888", http.DefaultServeMux)
 }
